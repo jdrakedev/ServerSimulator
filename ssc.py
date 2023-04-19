@@ -61,7 +61,6 @@ os.system("cls")
 # global variable that stores the tips for the shift
 MoneyMade = 0
 
-print('\n\n')
 
 # Header
 print('Welcome to ServerSimulator,\nYou will receive a randomly generated order that will have to be entered correctly')
@@ -93,35 +92,38 @@ while True:
     print('Be ready to take the Order')
     print('You will only have a few moments to memorize the order')
     input('continue...\n')
+    os.system("cls")
     
     print('Order: ')
-    
     # get our randomized list
     order = getorder()
     
     # convert list to a string
     orderstring = ' '.join(order)
     
+    print("\n")
+    input('continue...\n')
     # give the user an alloted time to memorize the order
-    countdown = '\n12345'
-    for c in countdown:
-        time.sleep(1)
-        print(c)
+    # countdown = '\n12345'
+    # for c in countdown:
+        # time.sleep(1)
+        # print(c)
 
     # clear the screen
     os.system("cls")
     
     # user is prompted to enter the randomly generated order
-    enterorder = input('\nWhat is the order?\n(add a space between each item) ')
+    enterorder = input('\nWhat is the order? (add a space between each item)\n\nOrder: ')
     if enterorder == orderstring:
         print("\nOrder up!")
     else:
         print("\nWrong order! Youre fired!")
-        print('\n\n')
         exit()
+        os.system("cls")
     
     print('Lets wait for the guests to finish their meal')
     input('continue...\n')
+    os.system("cls")
     
     print('Perfect! Now its time to get the bill ready')
     input('continue...\n')
@@ -140,6 +142,7 @@ while True:
     
     print('\nThe party is ready to pay, they hand over a $100 bill at the register')
     input('continue...\n')
+    os.system("cls")
     
     print('\nLooks like the register is down again, gonna have to calculate the bill by hand')
     input('continue...\n')
@@ -151,12 +154,12 @@ while True:
     if handcalc == totalprice: 
         print(f'The damage is ${totalprice}')
     else:
-        print('Wrong total!')
+        print('\nWrong total!')
         print('Youre fired!')
-        print('\n\n')
         exit()
     
     input('continue...\n')
+    os.system("cls")
     
     #make change for the customer that is paying with a 100 dollar bill
     change = 100 - totalprice
@@ -164,14 +167,14 @@ while True:
     if handcalcchange == change:
         print('Guests change is $',change)
     else:
-        print('Wrong change!')
+        print('\nWrong change!')
         print('Youre fired!')
-        print('\n\n')
         exit()
     
     # print the guests ticket
     print('\nThe guests ticket is printing,\nhand it to them along with their change')
     input('continue...\n')
+    os.system("cls")
     
     print(' _______________')
     print('|Ticket         |')
@@ -196,8 +199,7 @@ while True:
         # return total tips after the shift is over
         print('')
         print(f'Total tips for this shift ${MoneyMade}')
-        print('\n\n\n')
         break
     else:
-        print('\n\n')
+        os.system("cls")
         continue
