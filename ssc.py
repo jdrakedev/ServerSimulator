@@ -51,7 +51,7 @@ NC = FoodItem('nachos', 8)
 PZ = FoodItem('pizza', 20)
 SA = FoodItem('salad', 10)
 
-# create lits that contain the menu and prices
+# create 2 lists that contain the menu and prices
 foodmenu = [HB.get_name(), NC.get_name(), PZ.get_name(), SA.get_name()]
 foodprices = [HB.get_price(), NC.get_price(), PZ.get_price(), SA.get_price()]    
 
@@ -138,6 +138,9 @@ while True:
     for price in prices.values():
         totalprice += price
     
+    print('\nThe party is ready to pay, they hand over a $100 bill at the register')
+    input('continue...\n')
+    
     print('\nLooks like the register is down again, gonna have to calculate the bill by hand')
     input('continue...\n')
     
@@ -155,6 +158,17 @@ while True:
     
     input('continue...\n')
     
+    #make change for the customer that is paying with a 100 dollar bill
+    change = 100 - totalprice
+    handcalcchange = int(input('What is the guests change? '))
+    if handcalcchange == change:
+        print('Guests change is $',change)
+    else:
+        print('Wrong change!')
+        print('Youre fired!')
+        print('\n\n')
+        exit()
+    
     # print the guests ticket
     print('\nThe guests ticket is printing,\nhand it to them along with their change')
     input('continue...\n')
@@ -162,7 +176,9 @@ while True:
     print(' _______________')
     print('|Ticket         |')
     print('|               |')  
-    print(f'|Total:{totalprice}\t|')
+    print(f'|Total${totalprice}\t|')
+    print('|               |')
+    print(f'|Change${change}\t|')
     print('|               |')
     print('|Thnx!ComeAgain!|')
     print('|_______________|')
