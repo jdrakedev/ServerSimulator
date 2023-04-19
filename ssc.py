@@ -201,10 +201,3 @@ while True:
     else:
         print('\n\n')
         continue
-
-
-    # # calculate the price (use .items() [a tuple function])
-    # totalprice = 0
-    # for item, price in prices.items(): #TEST
-        # #print(f"{item}: ${price}")
-        # totalprice += price
