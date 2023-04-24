@@ -1,7 +1,9 @@
 import random
 import os
 
-# TODO change the Theme to a CAFE!!! coffee, latte, espresso, americano
+# TODO 
+# change the Theme to a CAFE!!! coffee, latte, espresso, americano
+# make a random name generator so the player has to memorize those as well and call them out  
 
 # Define the CafeItem class
 class CafeItem:
@@ -33,10 +35,9 @@ def getorder():
     for i in range(guests):
         i = random.choice(cafe_menu)
         Cafe.append(i)
-        print(i, end=' ')
     return Cafe
 
-# this fuLATtion is calculating the prices for each item in a given order based on the cafe_prices and cafe_menu lists
+# this function is calculating the prices for each item in a given order based on the cafe_prices and cafe_menu lists
 # returns the prices dictionary, which contains the total cost for each item in the order
 def getprice(order, cafe_prices):
     prices = {}
@@ -85,51 +86,49 @@ while True:
     print('|________________|')
     
     print('')
-    print(f'You have {guests} to attend to')
+    print(f'You have {guests} guests to attend to')
     input('continue...\n')
     
     print('Be ready to take the Order')
-    print('You will only have a few moments to memorize the order, so you can enter it into the system')
+    print('You will only have a few moments to memorize the order, so you can enter it into the system quickly')
     input('continue...\n')
     os.system("cls")
     
-    print('Order: ')
+    
     # get our randomized list
     order = getorder()
     
-    # convert list to a string
-    orderstring = ' '.join(order)
+    # print out the order
+    print('Here is the itemized order: ')
+    oidx = 0
+    for itemized in order:
+        oidx += 1
+        print(f'{oidx}.{itemized}')
     
     print("\n")
     input('continue...\n')
 
     # clear the screen
     os.system("cls")
+
+    # prompt the user to enter each item and check if it matches each item in the list ()
+    idx = 0
+    for item in order:
+        idx += 1
+        enter_item = input(f"Enter item {idx}: ").strip().lower()
+        if enter_item != item:
+            print("Wrong order! You're fired!")
+            exit()
     
-    # user is prompted to enter the randomly generated order
-    enterorder = input('\nWhat is the order? (add a space between each item)\n\nOrder: ')
-    if enterorder == orderstring:
-        print("\nOrder up!")
-    else:
-        print("\nWrong order! Youre fired!")
-        exit()
-        os.system("cls")
     
-    print('Lets wait for the guests to finish their meal')
-    input('continue...\n')
     os.system("cls")
-    
     print('Perfect! Now its time to get the bill ready')
     input('continue...\n')
-        
-    print('Here is the itemized order: ')
-    for itemized in order:
-        print(itemized)
     
     # get the correct prices for the order 
     prices = getprice(order, cafe_prices)
     
-    # calculate the total price (use .values() [a dictionary fuLATtion])
+    # calculate the total price (use .values() [a dictionary function])
     totalprice = 0
     for price in prices.values():
         totalprice += price
@@ -188,10 +187,10 @@ while True:
     MoneyMade += tip
     
     # take another table?
-    another = input('\nTake another table? (y/n) ')
+    another = input('\nContinue the shift? (y/n) ')
     if another == 'n':
         # return total tips after the shift is over
-        print('')
+        print('\nThats it? Well I hope this will cover your bills slacker! ')
         print(f'Total tips for this shift ${MoneyMade}')
         break
     else:

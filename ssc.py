@@ -61,7 +61,6 @@ os.system("cls")
 # global variable that stores the tips for the shift
 MoneyMade = 0
 
-
 # Header
 print('Welcome to ServerSimulator,\nYou will receive a randomly generated order that will have to be entered correctly')
 input("enter to continue...\n")
