@@ -2,7 +2,6 @@ import random
 import os
 
 # TODO 
-# change the Theme to a CAFE!!! coffee, latte, espresso, americano
 # make a random name generator so the player has to memorize those as well and call them out  
 
 # Define the CafeItem class
@@ -27,6 +26,10 @@ class CafeItem:
     def set_price(self, price):
         self.price = price
 #################################################### End Class
+
+# prompt the user to continue
+def go():
+    input('\ncontinue...\n')
 
 # generate a random order based on the list called cafe_menu
 # append the randomized order to a new list and return it
@@ -63,8 +66,8 @@ MoneyMade = 0
 
 # Header
 print('Welcome to Python Cafe!')
-print("Its your first day on the job so we are going to start you off on the register")
-input("enter to continue...\n")
+print("\nIts your first day on the job so we are going to start you off on the register")
+input("Press ENTER to continue...\n")
 
 #main program
 while True:
@@ -72,9 +75,12 @@ while True:
     guests = 0
     guests = random.randrange(2,4)
     
+    # clear the screen
+    os.system("cls")
     print('Study the menu and prices, you will need this info when taking the order')
-    input('continue...\n')
+    go()
     
+    os.system("cls")
     # print menu
     print(' ________________ ')
     print('|Menu            |')
@@ -84,14 +90,16 @@ while True:
     print('|Espresso       3|')
     print('|Americano      4|')
     print('|________________|')
+    go()
+    os.system("cls")
     
-    print('')
     print(f'You have {guests} guests to attend to')
-    input('continue...\n')
+    go()
+    os.system("cls")
     
     print('Be ready to take the Order')
-    print('You will only have a few moments to memorize the order, so you can enter it into the system quickly')
-    input('continue...\n')
+    print('You will only have a few moments to memorize the order,\nso you can enter it into the system quickly')
+    go()
     os.system("cls")
     
     
@@ -104,11 +112,7 @@ while True:
     for itemized in order:
         oidx += 1
         print(f'{oidx}.{itemized}')
-    
-    print("\n")
-    input('continue...\n')
-
-    # clear the screen
+    go()
     os.system("cls")
 
     # prompt the user to enter each item and check if it matches each item in the list ()
@@ -120,10 +124,9 @@ while True:
             print("Wrong order! You're fired!")
             exit()
     
-    
     os.system("cls")
     print('Perfect! Now its time to get the bill ready')
-    input('continue...\n')
+    go()
     
     # get the correct prices for the order 
     prices = getprice(order, cafe_prices)
@@ -133,25 +136,32 @@ while True:
     for price in prices.values():
         totalprice += price
     
-    print('\nThe party is ready to pay, they hand over a $50 bill at the register')
-    input('continue...\n')
+    os.system("cls")
+    print('The party is ready to pay,\nthey hand over a $50 bill at the register')
+    go()
     os.system("cls")
     
-    print('\nLooks like the register is down again, gonna have to calculate the bill by hand')
-    input('continue...\n')
+    print('Looks like the register is down again!\nYoure gonna have to calculate the bill by hand')
+    go()
+    os.system("cls")
     
     # ask user to calculate the bill
-    handcalc = int(input('Enter the total: '))
-    
+    handcalc = input('Enter the total: ')
+
     # check if the bill is the correct amount
-    if handcalc == totalprice: 
+    if handcalc == str(totalprice): 
         print(f'The damage is ${totalprice}')
+    elif len(handcalc.strip()) == 0:
+        print('\nYou didnt even try!')
+        print('Youre fired!')
+        exit()
     else:
         print('\nWrong total!')
         print('Youre fired!')
         exit()
-    
-    input('continue...\n')
+
+
+    go()
     os.system("cls")
     
     #make change for the customer that is paying with a 100 dollar bill
@@ -164,9 +174,10 @@ while True:
         print('Youre fired!')
         exit()
     
+    os.system("cls")
     # print the guests ticket
     print('\nThe guests ticket is printing,\nhand it to them along with their change')
-    input('continue...\n')
+    go()
     os.system("cls")
     
     print(' _______________')
@@ -181,7 +192,7 @@ while True:
     
     # generate a random tip
     tip = random.randrange(1,10)
-    print(f'\nThe guests hand you a tip of ${tip}')
+    print(f'The guests hand you a tip of ${tip}')
     
     # calculate the total in tips for the shift
     MoneyMade += tip
@@ -189,9 +200,10 @@ while True:
     # take another table?
     another = input('\nContinue the shift? (y/n) ')
     if another == 'n':
+        os.system("cls")
         # return total tips after the shift is over
-        print('\nThats it? Well I hope this will cover your bills slacker! ')
-        print(f'Total tips for this shift ${MoneyMade}')
+        print('Thats it? Well I hope this will cover your bills slacker! ')
+        print(f'\nTotal tips for this shift ${MoneyMade}')
         break
     else:
         os.system("cls")
