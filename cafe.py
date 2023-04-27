@@ -1,8 +1,9 @@
 import random
 import os
 
-# TODO 
-# make a random name generator so the player has to memorize those as well and call them out  
+# TODO
+# If the player takes over 4 tables they will be ready for the next phase of the job,
+# which will be making the drinks!  
 
 # Define the CafeItem class
 class CafeItem:
@@ -64,6 +65,9 @@ os.system("cls")
 # global variable that stores the tips for the shift
 MoneyMade = 0
 
+# global variable that checks if the player has been through the initial training
+TrainingCount = 0 
+
 # Header
 print('Welcome to Python Cafe!')
 print("\nIts your first day on the job so we are going to start you off on the register")
@@ -97,10 +101,14 @@ while True:
     go()
     os.system("cls")
     
-    print('Be ready to take the Order')
-    print('You will only have a few moments to memorize the order,\nso you can enter it into the system quickly')
-    go()
-    os.system("cls")
+    if TrainingCount < 1:
+        print('Be ready to take the Order.')
+        print('\nYou will only have a few moments to memorize the order,\nso you can enter it into the system quickly')
+        go()
+        os.system("cls")
+    else:
+        pass
+
     
     
     # get our randomized list
@@ -160,7 +168,6 @@ while True:
         print('Youre fired!')
         exit()
 
-
     go()
     os.system("cls")
     
@@ -176,7 +183,7 @@ while True:
     
     os.system("cls")
     # print the guests ticket
-    print('\nThe guests ticket is printing,\nhand it to them along with their change')
+    print('The guests ticket is printing,\nhand it to them along with their change')
     go()
     os.system("cls")
     
@@ -192,7 +199,7 @@ while True:
     
     # generate a random tip
     tip = random.randrange(1,10)
-    print(f'The guests hand you a tip of ${tip}')
+    print(f'\nThe guests hand you a tip of ${tip}')
     
     # calculate the total in tips for the shift
     MoneyMade += tip
@@ -206,5 +213,6 @@ while True:
         print(f'\nTotal tips for this shift ${MoneyMade}')
         break
     else:
+        TrainingCount += 1 #TEST
         os.system("cls")
         continue
