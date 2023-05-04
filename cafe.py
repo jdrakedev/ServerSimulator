@@ -2,8 +2,8 @@ import random
 import os
 
 # TODO
-# If the player takes over 4 tables they will be ready for the next phase of the job,
-# which will be making the drinks!  
+# -If the player takes over 4 tables they will be ready for the next phase of the job, which will be making the drinks!
+# -Add a mechanic for asking a "cute person" for their number (based on a random cute_person number)  
 
 # Define the CafeItem class
 class CafeItem:
@@ -79,6 +79,12 @@ while True:
     guests = 0
     guests = random.randrange(2,4)
     
+    cute_person = 0
+    cute_person = random.randrange(1, 3) # If cute_person == 2, ask for number
+    
+    got_number = 0
+    got_number = random.randrange(1, 4) # If got_number == 2, you get the number!
+    
     # clear the screen
     os.system("cls")
     print('Study the menu and prices, you will need this info when taking the order')
@@ -108,8 +114,6 @@ while True:
         os.system("cls")
     else:
         pass
-
-    
     
     # get our randomized list
     order = getorder()
@@ -200,6 +204,17 @@ while True:
     # generate a random tip
     tip = random.randrange(1,10)
     print(f'\nThe guests hand you a tip of ${tip}')
+    
+    if cute_person == 2:
+        os.system("cls")
+        print("The last customer is really cute!")
+        ask_for_number = input("Ask cute customer for their number? (y/n) ").lower()
+        if ask_for_number == "y" and got_number == 2:
+            print("You got the number! Good for you!")
+        elif ask_for_number == "y" and got_number != 2:
+            print("Oof! Rejected!")
+        elif ask_for_number == "n":
+            print("Dang! You chickened out!")
     
     # calculate the total in tips for the shift
     MoneyMade += tip
