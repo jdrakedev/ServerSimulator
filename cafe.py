@@ -3,7 +3,8 @@ import os
 
 # TODO
 # -If the player takes over 4 tables they will be ready for the next phase of the job, which will be making the drinks!
-# -Add a mechanic for asking a "cute person" for their number (based on a random cute_person number)  
+# -Add a mechanic for asking a "cute person" for their number (based on a random cute_person number) 
+# -Keep the progression going in the game so that you can get promoted several times until you run the company!!! 
 
 # Define the CafeItem class
 class CafeItem:
@@ -49,6 +50,20 @@ def getprice(order, cafe_prices):
         prices[item] = cafe_prices[cafe_menu.index(item)] * order.count(item)
     return prices
 
+def make_drinks():
+    os.system("cls")
+    print("Heres a list of the beverages we serve and their ingredients.")
+    print("Study the recipies so you can make the drinks as we call them out")
+    
+    print("\nDrink Recipes")
+    print("Recipe for a Latte:      2 shots espresso, 8 oz milk")
+    print("Recipe for a Americano:  3 shots espresso, 16 oz water")
+    print("Recipe for an Espresso:  2 shots of espresso")
+    print("Recipe for Coffee:       16 oz of coffee")
+    
+    # Logic for making drinks
+    go()
+
 # create Cafe objects: coffee, latte, espresso, americano
 COF = CafeItem('coffee', 2)
 LAT = CafeItem('latte', 5)
@@ -66,7 +81,7 @@ os.system("cls")
 MoneyMade = 0
 
 # global variable that checks if the player has been through the initial training
-TrainingCount = 0 
+TrainingCount = 0
 
 # Header
 print('Welcome to Python Cafe!')
@@ -75,7 +90,7 @@ input("Press ENTER to continue...\n")
 
 #main program
 while True:
-    #generates a random number of guests
+    # generates a random number of guests
     guests = 0
     guests = random.randrange(2,4)
     
@@ -87,6 +102,14 @@ while True:
     
     # clear the screen
     os.system("cls")
+    
+    # If the trainee has served over 3 groups of people, its time to learn how to make the drinks
+    if TrainingCount > 2:
+        print("Its time to learn how to make drinks!")
+        go()
+        # Call a function for making drinks
+        make_drinks()
+    
     print('Study the menu and prices, you will need this info when taking the order')
     go()
     
@@ -150,10 +173,6 @@ while True:
     
     os.system("cls")
     print('The party is ready to pay,\nthey hand over a $50 bill at the register')
-    go()
-    os.system("cls")
-    
-    print('Looks like the register is down again!\nYoure gonna have to calculate the bill by hand')
     go()
     os.system("cls")
     
